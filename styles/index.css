@@ -1,0 +1,9 @@
+body{
+  background-color: #009688;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+}
+
+pi-recite-app{
+  width:60%;
+}

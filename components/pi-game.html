@@ -1,0 +1,42 @@
+<link rel="import" href="/bower_components/polymer/polymer.html" >
+<link rel="import" href="/bower_components/firebase-element/firebase-element.html" >
+<link rel="import" href="/components/pi-text-counter.html">
+
+
+<polymer-element name='pi-game' attributes='name'>
+
+  <template>
+    <h1>Welcome {{name}} to The Game of Pi</h1>
+    <p>When you play the game of Pi, you win or you die!</p>
+
+
+    <pi-text-counter on-gameover="{{gameEnd}}" passing={{playing}}></pi-text-counter>
+
+    <template if="{{!playing}}">
+      <a href='/#/leaderboard'>See the leaderboard</a>
+    </template>
+
+
+    <firebase-element childEvents
+                      id="leaderboard"
+                      location="https://vivid-fire-5472.firebaseio.com/leaderboard"
+                      data="{{entries}}"
+                      >
+    </firebase-element>
+
+  </template>
+
+
+
+
+  <script>
+    Polymer({
+      gameEnd:function(event, score){
+        console.log(this.$.leaderboard)
+
+        this.$.leaderboard.push({name: this.name, score: score})
+      }
+    })
+  </script>
+
+</polymer-element>

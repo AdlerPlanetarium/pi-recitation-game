@@ -1,0 +1,25 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/paper-input/paper-input-decorator.html">
+<link rel="import" href="/bower_components/paper-input/paper-input.html">
+<link rel="import" href="/bower_components/paper-input/paper-button.html">
+
+<polymer-element name='pi-home-page'>
+
+  <template>
+    <h1>Welcome to Pi thinggie</h1>
+    <paper-input-decorator label='none'>
+      <input is='core-input'  value="{{name}}" placehoder="Enter your name"></input>
+    </paper-input-decorator>
+    <paper-button raised on-click={{startGame}}> Start Game </button>
+
+  </template>
+
+  <script>
+    Polymer({
+      startGame:function(){
+        this.fire("start-game", this.name)
+      }
+    })
+  </script>
+
+</polymer-element>

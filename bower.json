@@ -1,0 +1,25 @@
+{
+  "name": "pi-recitation-game",
+  "version": "0.0.0",
+  "homepage": "https://github.com/AdlerPlanetarium/pi-recitation-game",
+  "authors": [
+    "Stuart <stuart@zooniverse.org>"
+  ],
+  "description": "Recite all the pi",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "~0.5.5",
+    "firebase-element": "Polymer/firebase-element#~0.5.5",
+    "app-router": "~2.5.0",
+    "paper-input": "Polymer/paper-input#~0.5.5",
+    "paper-button": "Polymer/paper-button#~0.5.5"
+  }
+}

@@ -1,0 +1,28 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/app-router/app-router.html">
+<link rel="import" href="/components/pi-text-counter.html">
+
+
+<polymer-element name='pi-recite-app'>
+
+  <template>
+    <app-router id='router' on-start-game="{{startGame}}" on-game-end="{{endGame}}">
+      <app-route path='/'                  import='/components/pi-home-page.html' >  </app-route>
+      <app-route path='/game/:name'        import='/components/pi-game.html' >       </app-route>
+      <app-route path='/leaderboard'       import='/components/pi-leaderboard.html' ></app-route>
+    </app-router>
+
+  </template>
+
+  <script>
+    Polymer({
+      startGame:function(event, detail){
+        this.$.router.go("/game/"+detail)
+      },
+      endGame:function(event,detail){
+        this.$.router.go("/leaderboard")
+      }
+    })
+  </script>
+
+</polymer-element>

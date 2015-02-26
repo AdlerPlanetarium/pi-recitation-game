@@ -1,0 +1,33 @@
+<link rel="import" href="/bower_components/polymer/polymer.html" attributes='router'>
+<link rel="import" href="/bower_components/firebase-element/firebase-element.html" attributes='router'>
+
+
+<polymer-element name='pi-leaderboard'>
+
+  <template>
+    <h1>Leaderboard</h1>
+
+    <ul>
+      <template repeat="{{key in keys}}">
+        <li> {{entries[key].name}}  {{entries[key].score}}</li>
+      </template>
+    </ul>
+
+    <firebase-element id='leader_remote'
+                      childEvents
+                      orderByChild="score"
+                      location="https://vivid-fire-5472.firebaseio.com/leaderboard"
+                      data="{{entries}}"
+                      keys="{{keys}}"
+                      >
+    </firebase-element>
+
+  </template>
+
+  <script>
+    Polymer({
+
+    })
+  </script>
+
+</polymer-element>
