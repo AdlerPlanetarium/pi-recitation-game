@@ -1,9 +1,14 @@
-body{
+body {
   background-color: #009688;
   color: white;
   font-family: 'Roboto', sans-serif;
+  padding: 0 2em;
 }
 
-pi-recite-app{
-  width:60%;
+a {
+  color: white;
+}
+
+pi-recite-app {
+  width: 60%;
 }
