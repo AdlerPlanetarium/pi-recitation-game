@@ -2,17 +2,31 @@
 <link rel="import" href="../bower_components/firebase-element/firebase-element.html" attributes='router'>
 
 
-<polymer-element name='pi-leaderboard'>
+<polymer-element name='pi-leaderboard' attributes="editable">
 
   <template>
-    <h1>Leaderboard</h1>
+    <div layout vertical center>
+      <h1>Leaderboard</h1>
 
-    <ul>
-      <template repeat="{{key in keys}}">
-        <li> {{entries[key].name}}  {{entries[key].score}}</li>
-      </template>
-    </ul>
 
+      <ul>
+        <template repeat="{{key, index in keys}}">
+          <li>{{index+1}}: {{entries[key].name}}  {{entries[key].score}}
+            <template if="{{editable}}">
+              <a href='#' data-name={{key}} on-tap={{removeName}}>remove</a>
+            </template>
+          </li>
+        </template>
+      </ul>
+
+      <p>
+        <a href="#/">Back to Home</a>
+        <template if="{{editable}}">
+          <a href='#' on-tap={{removeAll}}>Clear all</a>
+        </template>
+      </p>
+
+    </div>
     <firebase-element id='leader_remote'
                       childEvents
                       orderByChild="score"
@@ -22,10 +36,52 @@
                       >
     </firebase-element>
 
+    <style>
+      a {
+        color: #fff;
+      }
+      ul{
+        text-align:center
+        padding : 0px;
+        margin: 0px;
+        list-style: none;
+        columns: 2;
+        -webkit-columns: 2;
+        -moz-columns: 2;
+        -webkit-column-gap: 40px; /* Chrome, Safari, Opera */
+        -moz-column-gap: 40px; /* Firefox */
+        column-gap: 40px;
+      }
+      li{
+        padding : 0px;
+        margin: 0px
+        list-style:none;
+        -webkit-animation-name: fadeIn;
+        -webkit-animation-duration: 3s;
+      }
+
+      @-webkit-keyframes fadeIn {
+        from {color: red; opacity:0.2;}
+        to {color:white, opacity:1;}
+      }
+    </style>
+
   </template>
 
   <script>
     Polymer({
+      editable:false,
+      removeAll:function(event, detail, target){
+        event.preventDefault()
+        this.$.leader_remote.keys.forEach(function(key){
+          this.$.leader_remote.remove(key)
+        }.bind(this))
+      },
+      removeName:function(event, detail, target){
+        event.preventDefault()
+        var key = target.getAttribute("data-name")
+        this.$.leader_remote.remove(key)
+      }
 
     })
   </script>

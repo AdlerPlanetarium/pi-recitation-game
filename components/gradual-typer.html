@@ -1,0 +1,56 @@
+<link rel="import" href="../polymer/polymer.html">
+<polymer-element name="gradual-typer" attributes="text rate running">
+  <template>
+
+    <p id='content'>
+    </p>
+
+    <style>
+      :host {
+        display: block;
+      }
+      #content{
+        width: 60%;
+        text-align: left;
+      }
+      span{
+        opacity: 0px;
+        position: relative;
+        -webkit-animation-name: fadeIn;
+        -webkit-animation-duration: 3s;
+      }
+
+      @-webkit-keyframes fadeIn {
+        from { opacity:0;}
+        to { opacity:1;}
+      }
+    </style>
+  </template>
+
+  <script>
+    Polymer({
+      writePos:0,
+      rate: 200,
+      running: false,
+      ready:function(){
+        this.updateWritePos()
+      },
+      textChanged:function(){
+        this.splitText = this.text.split("")
+      },
+      updateWritePos:function(){
+        console.log("here")
+
+        if(this.writePos <= this.text.length && this.running){
+          span = document.createElement("span");
+          span.className = "fadeText"
+          span.innerHTML = this.text[this.writePos]
+          this.$.content.appendChild(span)
+          this.writePos+=1
+
+        }
+        setTimeout(function(){this.updateWritePos()}.bind(this), this.rate*100)
+      }
+    });
+  </script>
+</polymer-element>

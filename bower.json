@@ -20,6 +20,7 @@
     "firebase-element": "Polymer/firebase-element#~0.5.5",
     "app-router": "~2.5.0",
     "paper-input": "Polymer/paper-input#~0.5.5",
-    "paper-button": "Polymer/paper-button#~0.5.5"
+    "paper-button": "Polymer/paper-button#~0.5.5",
+    "core-animated-pages": "Polymer/core-animated-pages#~0.5.5"
   }
 }
