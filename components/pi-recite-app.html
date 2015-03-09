@@ -7,9 +7,10 @@
 
   <template>
     <app-router id='router' on-start-game="{{startGame}}" on-game-end="{{endGame}}">
-      <app-route path='/'                  import='./components/pi-home-page.html' >  </app-route>
-      <app-route path='/game/:name'        import='./components/pi-game.html' >       </app-route>
-      <app-route path='/leaderboard'       import='./components/pi-leaderboard.html' ></app-route>
+      <app-route path='/'                  import='./components/pi-home-page.html'>  </app-route>
+      <app-route path='/game/:name'        import='./components/pi-game.html'>       </app-route>
+      <app-route path='/leaderboard'       import='./components/pi-leaderboard.html'></app-route>
+      <app-route path='/admin'             import='./components/pi-game-admin.html' ></app-route>
     </app-router>
   </template>
 

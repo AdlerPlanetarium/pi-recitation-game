@@ -1,0 +1,41 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-ripple/paper-ripple.html">
+
+<polymer-element name='key-pad-key' attributes="key">
+
+  <template>
+    <paper-ripple on-click={{clicked}}  class="circle recenteringTouch">
+    </paper-ripple>
+    <p>{{key}}</p>
+
+
+    <style>
+      :host{
+        cursor:pointer;
+        position: relative;
+        text-align:center;
+      }
+      p{
+        font-size:2.0em;
+        color: white;
+      }
+      paper-ripple{
+        color: white;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top:0px;
+        left:0px;
+      }
+    </style>
+  </template>
+
+  <script>
+    Polymer({
+      clicked:function(){
+        this.fire("keypad-press", this.key)
+      }
+    })
+  </script>
+
+</polymer-element>

@@ -1,0 +1,39 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../components/key-pad-key.html">
+
+
+<polymer-element name='key-pad'>
+
+  <template>
+
+    <template repeat="{{key in keys}}">
+      <key-pad-key key={{key}}></key-pad-key>
+    </template>
+
+    <style>
+      p{
+        font-size:2.0em;
+        color: white;
+      }
+      :host{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+      }
+      key-pad-key{
+        width: 30%;
+      }
+    </style>
+  </template>
+
+  <script>
+    Polymer({
+      keys: [1,2,3,4,5,6,7,8,9,".", 0],
+      clicked:function(){
+        this.fire("keypad-press", keyval)
+      }
+    })
+  </script>
+
+</polymer-element>
