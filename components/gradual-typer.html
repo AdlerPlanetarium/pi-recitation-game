@@ -39,15 +39,12 @@
         this.splitText = this.text.split("")
       },
       updateWritePos:function(){
-        console.log("here")
-
         if(this.writePos <= this.text.length && this.running){
           span = document.createElement("span");
           span.className = "fadeText"
           span.innerHTML = this.text[this.writePos]
           this.$.content.appendChild(span)
           this.writePos+=1
-
         }
         setTimeout(function(){this.updateWritePos()}.bind(this), this.rate*100)
       }

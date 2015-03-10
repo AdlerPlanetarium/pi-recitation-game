@@ -2,11 +2,12 @@
 <link rel="import" href="../bower_components/firebase-element/firebase-element.html" >
 <link rel="import" href="../bower_components/core-animated-pages/core-animated-pages.html" >
 <link rel="import" href="../bower_components/core-animated-pages/transitions/slide-from-right.html" >
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../components/pi-text-counter.html">
 <link rel="import" href="../components/gradual-typer.html">
 
 
-<polymer-element name='pi-game' attributes='name'>
+<polymer-element name='pi-game' attributes='name router'>
   <template>
 
     <core-animated-pages selected="{{state}}" valueattr="id" transitions="slide-from-right">
@@ -17,7 +18,7 @@
 
       <section layout vertical center id='results' slide-from-right>
         <h1>You got {{score}} digits of PI correct</h1>
-        <a href='#/leaderboard'>See the leaderboard</a>
+        <paper-button raised on-tap="{{goToLeaderboard}}">See the leaderboard</paper-button>
 
         <h2>Pi is actually</h2>
         <gradual-typer id='typer' text={{pi}} rate=1></gradual-typer>
@@ -72,6 +73,9 @@
         this.state="results"
         this.$.typer.running = true
         this.$.leaderboard.push({name: this.name, score: score})
+      },
+      goToLeaderboard:function(){
+        this.router.go("/leaderboard")
       }
     })
   </script>
