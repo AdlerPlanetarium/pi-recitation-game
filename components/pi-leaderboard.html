@@ -89,11 +89,11 @@
         this.entriesChanged()
       },
       entriesChanged:function(){
-        this.sortedEntries = []
+        var tempEntries = []
         this.keys.forEach(function(key){
-          this.sortedEntries.push({key:key, data: this.entries[key]})
+          tempEntries.push({key:key, data: this.entries[key]})
         }.bind(this))
-        this.sortedEntries = this.sortedEntries.sort(function(a,b){ return a.data.score < b.data.score})
+        this.sortedEntries = tempEntries.sort(function(a,b){ return a.data.score < b.data.score})
       },
 
       goHome:function(){

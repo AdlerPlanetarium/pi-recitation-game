@@ -19,6 +19,7 @@
       <section layout vertical center id='results' slide-from-right>
         <h1>You got {{score}} digits of PI correct</h1>
         <paper-button raised on-tap="{{goToLeaderboard}}">See the leaderboard</paper-button>
+        <paper-button raised on-tap="{{goToHome}}">Start Again</paper-button>
 
         <h2>Pi is actually</h2>
         <gradual-typer id='typer' text={{pi}} rate=1></gradual-typer>
@@ -76,6 +77,9 @@
       },
       goToLeaderboard:function(){
         this.router.go("/leaderboard")
+      },
+      goToHome:function(){
+        this.router.go("/")
       }
     })
   </script>
