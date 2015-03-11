@@ -20,9 +20,9 @@
 
       <p>
 
-        <paper-button raised on-tap={{goHome}}>Back to Home</button>
+        <paper-button raised on-tap={{goHome}}>Back to Home</paper-button>
         <template if="{{editable}}">
-          <a href='#' on-tap={{removeAll}}>Clear all</a>
+          <paper-button raised on-tap={{removeAll}}>Clear all</paper-button>
         </template>
       </p>
 
@@ -90,10 +90,15 @@
       },
       entriesChanged:function(){
         var tempEntries = []
+
         this.keys.forEach(function(key){
           tempEntries.push({key:key, data: this.entries[key]})
         }.bind(this))
-        this.sortedEntries = tempEntries.sort(function(a,b){ return a.data.score < b.data.score})
+        this.sortedEntries = tempEntries.sort(function(a,b){
+          if(a.data.score < b.data.score){ return 1}
+          if(a.data.score > b.data.score){ return -1}
+          return 0
+          })
       },
 
       goHome:function(){
