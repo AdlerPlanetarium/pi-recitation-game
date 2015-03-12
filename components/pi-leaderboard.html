@@ -2,7 +2,7 @@
 <link rel="import" href="../bower_components/firebase-element/firebase-element.html" attributes='router'>
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 
-<polymer-element name='pi-leaderboard' attributes="editable">
+<polymer-element name='pi-leaderboard' attributes="editable router">
 
   <template>
     <div layout vertical center>
@@ -12,7 +12,7 @@
         <template repeat="{{entry, index in sortedEntries}}">
           <li>{{index+1}}: {{entry.data.name}}  {{entry.data.score}}
             <template if="{{editable}}">
-              <a href='#' data-name={{entry.key}} on-tap={{removeName}}>remove</a>
+              <paper-button  data-name={{entry.key}} raised on-tap="{{removeName}}">remove</paper-button>
             </template>
           </li>
         </template>
@@ -33,7 +33,6 @@
                       location="https://vivid-fire-5472.firebaseio.com/leaderboard"
                       data="{{entries}}"
                       keys="{{keys}}"
-                      on-child-added="{{childAdded}}"
                       >
     </firebase-element>
 
@@ -74,6 +73,8 @@
       editable:false,
       sortedEntries: [],
       keys:[],
+
+
       removeAll:function(event, detail, target){
         event.preventDefault()
         this.$.leader_remote.keys.forEach(function(key){
@@ -85,10 +86,7 @@
         var key = target.getAttribute("data-name")
         this.$.leader_remote.remove(key)
       },
-      childAdded:function(){
-        this.entriesChanged()
-      },
-      entriesChanged:function(){
+      keysChanged:function(){
         var tempEntries = []
 
         this.keys.forEach(function(key){

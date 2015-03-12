@@ -1,10 +1,10 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../components/pi-leaderboard.html">
 
-<polymer-element name="pi-game-admin">
+<polymer-element name="pi-game-admin" attributes='router'>
   <template>
 
-    <pi-leaderboard editable=true></pi-leaderboard>
+    <pi-leaderboard router="{{router}}" editable=true></pi-leaderboard>
 
     <style>
       :host {
